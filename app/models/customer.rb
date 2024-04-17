@@ -14,9 +14,5 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :telephone_number, presence: true
   validates :email, uniqueness: true
-  
-  def active_for_authentication?
-    super && (self.is_active == false)
-  end
     
 end
