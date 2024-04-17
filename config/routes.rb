@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   scope module: :public do
-    resource :customers, only: [:show, :update, :edit]
+    resources :customers, only: [:show, :update, :edit]
     resources :items, only: [:index, :show]
+    resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
+
   end
   
   # 管理者用
@@ -19,7 +21,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
-    resources :item, only: [:new, :create, :index, :show, :edit, :update]
+    resources :items, only: [:new, :create, :index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
   end
   devise_for :users
   
