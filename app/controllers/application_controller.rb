@@ -1,19 +1,18 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!, except: [:top]
   
   def after_sign_in_path_for(resource)
     case resource
     when Admin
       admin_path
     when Customer
-      root_path
+      '/customers/my_page'
     else
       root_path
     end
   end
 
   def after_sign_out_path_for(resource)
-    about_path
+    root_path
   end
 
   def configure_permitted_parameters
