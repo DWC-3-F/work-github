@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  root to: 'public/homes#top'
+  get "/about"=>"public/homes#about",as: 'about'
   # 顧客用
   # URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
@@ -7,10 +9,11 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   scope module: :public do
-    resources :customers, only: [:show, :update, :edit]
+    get '/customers/my_page', to: 'customers#show'
+    get '/customers/information/edit', to: 'customers#edit'
+    patch '/customers/information', to: 'customers#update'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
-
   end
   
   # 管理者用
