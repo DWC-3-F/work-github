@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :customers, only: [:show, :update, :edit]
     resources :items, only: [:index, :show]
   end
-
+  
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -22,5 +22,6 @@ Rails.application.routes.draw do
     resources :item, only: [:new, :create, :index, :show, :edit, :update]
   end
   devise_for :users
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
