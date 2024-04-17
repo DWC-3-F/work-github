@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   scope module: :public do
+    resource :customers, only: [:show, :update, :edit]
     resources :items, only: [:index, :show]
   end
   
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   namespace :admin do
+    resources :customers, only: [:index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :edit, :update]
     resources :item, only: [:new, :create, :index, :show, :edit, :update]
   end
