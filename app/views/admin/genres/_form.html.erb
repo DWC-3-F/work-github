@@ -1,5 +1,6 @@
-<%= form_with(model: genre, local: true) do |f| %>
+<%= form_with(model: @genre, local: true) do |f| %>
   <div class="form-group">
+    
     <%= f.label :name, 'ジャンル名' %>
     <%= f.text_field :name %>
   </div>
