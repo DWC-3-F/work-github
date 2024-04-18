@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
-  }
+}
   
   get '/admin', to: 'admin/homes#top'
   namespace :admin do
