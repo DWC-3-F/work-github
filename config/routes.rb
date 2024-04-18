@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   scope module: :public do
     get '/customers/my_page', to: 'customers#show'
     get '/customers/information/edit', to: 'customers#edit'
+    get '/customers/check', to: 'customers#check'
+    patch '/customers/withdraw', to: 'customers#withdraw'
     patch '/customers/information', to: 'customers#update'
-    resources :customers
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
   end

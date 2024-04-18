@@ -1,5 +1,5 @@
 <h2>ジャンル一覧・追加</h2>
-<%= render 'form', genre: Genre.new %>
+<%= render 'form', url: admin_genres_path, genre: @genre %>
 
 <table>
   <thead>
@@ -13,7 +13,7 @@
       <td>
         <%= genre.name %>
       </td>
-      <td><%= link_to '編集する', edit_genre_path(genre) %></td>
+      <td><%= link_to "編集する", edit_admin_genre_path(genre) %></td>
     </tr>
     <% end %>
   </tbody>
