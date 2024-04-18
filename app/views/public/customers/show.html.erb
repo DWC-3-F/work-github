@@ -1,15 +1,18 @@
 <h2>マイページ</h2>
 
-<p>登録情報</p>
-<%= link_to '編集する', edit_customer_path %>
-<!-- 会員情報詳細 -->
-<!-- 氏名 -->
-<!-- カナ -->
-<!-- 郵便番号 -->
-<!-- 住所 -->
-<!-- 電話番号 -->
-<!-- メールアドレス -->
-
-<p>配送先</p>
-<%= link_to '一覧を見る', 
+<table>
+  <tr>
+    <td>登録情報</td>
+    <td><%= link_to '編集する', customers_information_edit_path %></td>
+  </tr>
+  <tr></tr>
+  <tr>
+    <td>配送先</td>
+    <td><%= link_to '一覧を見る', root_path %></td>
+  </tr>
+  <tr>
+    <td>注文履歴</td>
+    <td><%= link_to '一覧を見る', orders_path %></td>
+  </tr>
+</table>
 <%= link_to 'ログアウト', destroy_customer_session_path,method: :delete %>
