@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_path
     when Customer
-      root_path
+      '/customers/my_page'
     else
       root_path
     end
   end
 
   def after_sign_out_path_for(resource)
-    admin_path
+    about_path
   end
 
   def configure_permitted_parameters
