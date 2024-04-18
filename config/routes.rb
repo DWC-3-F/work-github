@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     get '/customers/my_page', to: 'customers#show'
     get '/customers/information/edit', to: 'customers#edit'
     patch '/customers/information', to: 'customers#update'
-    resources :customers
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
   end

@@ -6,10 +6,11 @@ class Public::CustomersController < ApplicationController
   end
   
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
   
   def update
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
+  
 end
