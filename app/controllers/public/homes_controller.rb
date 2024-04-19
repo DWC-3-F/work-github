@@ -1,3 +1,10 @@
-class Admin::HomesController < ApplicationController
-  before_action :authenticate_admin!
+
+class Public::HomesController < ApplicationController
+  
+  def top
+  end
+  
+  def about
+  end
 end
+
