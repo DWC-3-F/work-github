@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2024_04_19_035755) do
-
-  create_table "addresses", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "post_code"
-    t.string "address"
-    t.string "name"
-    t.integer "customer_id"
-    
-ActiveRecord::Schema.define(version: 2024_04_18_041255) do
+ActiveRecord::Schema.define(version: 2024_04_19_035954) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,7 +51,6 @@ ActiveRecord::Schema.define(version: 2024_04_18_041255) do
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
-
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "item_id", null: false
