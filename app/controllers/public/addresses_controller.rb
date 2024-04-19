@@ -1,4 +1,4 @@
-class AddressesController < ApplicationController
+class Public::AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
   end
@@ -24,6 +24,6 @@ class AddressesController < ApplicationController
   end
   
   def address_params
-    params.require(:address).permit(:customer_id, :post_code)
+    params.require(:address).permit(:customer_id, :post_code, :address, :name)
   end
 end
