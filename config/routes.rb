@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'addresses/index'
     get 'addresses/edit'
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:create, :index, :update, :destroy]
+    delete '/cart_items/destory_all', to: 'cart_items#destroy_all'
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
   end
   
