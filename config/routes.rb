@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     patch '/customers/withdraw', to: 'customers#withdraw'
     patch '/customers/information', to: 'customers#update'
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:create, :index, :update, :destroy]
+    delete '/cart_items/destory_all', to: 'cart_items#destroy_all'
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
