@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :order
+  has_many :address
   
   validates :last_name, presence: true
   validates :first_name, presence: true

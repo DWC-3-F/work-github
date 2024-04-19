@@ -14,10 +14,9 @@ Rails.application.routes.draw do
     get '/customers/check', to: 'customers#check'
     patch '/customers/withdraw', to: 'customers#withdraw'
     patch '/customers/information', to: 'customers#update'
-    get 'addresses/index'
-    get 'addresses/edit'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
+    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
   
   # 管理者用
@@ -34,7 +33,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
   end
-  devise_for :users
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
