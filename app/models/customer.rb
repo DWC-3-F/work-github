@@ -5,7 +5,11 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :order
+<<<<<<< HEAD
   has_many :address
+=======
+  has_many :cart_item
+>>>>>>> origin/develop
   
   validates :last_name, presence: true
   validates :first_name, presence: true
