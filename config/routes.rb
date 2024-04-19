@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get '/customers/check', to: 'customers#check'
     patch '/customers/withdraw', to: 'customers#withdraw'
     patch '/customers/information', to: 'customers#update'
+    get 'addresses/index'
+    get 'addresses/edit'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
   end

@@ -15,4 +15,5 @@ class Customer < ApplicationRecord
   validates :telephone_number, presence: true
   validates :email, uniqueness: true
     
+
 end
