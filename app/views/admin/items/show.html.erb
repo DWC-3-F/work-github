@@ -1,1 +1,39 @@
 <h1>items#show</h1>
+
+<div>
+  <strong>Image:</strong>
+  <%= image_tag @item.image, alt: @item.name if @item.image.attached? %>
+</div>
+
+<div>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</div>
+
+<div>
+  <strong>Introduction:</strong>
+  <%= @item.introduction %>
+</div>
+
+<div>
+  <strong>Genre:</strong>
+  <%= @item.genre.name %>
+</div>
+
+<div>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</div>
+
+<div>
+  <strong>販売ステータス:</strong>
+  <% if @item.is_active %>
+    販売中
+  <% else %>
+    販売停止中
+  <% end %>
+</div>
+
+<div>
+  <%= link_to '編集する', edit_admin_item_path(@item), class: 'btn btn-primary' %>
+</div>

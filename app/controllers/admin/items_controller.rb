@@ -4,18 +4,19 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
   end
 
-  def create
+def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = 'You have created item successfully'
-      redirect_to item_path(@item)
+        flash[:notice] = 'You have created item successfully'
+        redirect_to admin_item_path(@item) # ここでadmin_item_pathを使用します
     else
-      render :new
+        render :new
     end
-  end
+end
 
   def index
     @items = Item.all
+    @items = Item.page(params[:page]).per(10)
   end
 
   def show
@@ -30,7 +31,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.update(item_params)
       flash[notice] = 'You have updated item successfully'
-      redirect_to item_path(@item)
+      redirect_to admin_item_path(@item)
     else
       render :edit
     end
