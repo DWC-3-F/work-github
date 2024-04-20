@@ -4,7 +4,11 @@
   <div class="item-grid">
     <% @items.each do |item| %>
       <div class="item-box">
-        <%= image_tag item.image, class: 'item-image' if item.image.attached? %>
+        <% if item.image.attached? %>
+          <%= link_to item_path(item) do %>
+           <%= image_tag item.image, class: 'item-image' %>
+          <% end %>
+        <% end %>
         <h5><%= item.name %></h5>
         <h5><%= number_to_currency(item.price, unit: "¥", strip_insignificant_zeros: true) %></h5>
       </div>
