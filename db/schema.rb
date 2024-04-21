@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2024_04_19_064439) do
     t.string "post_code", null: false
     t.string "address", null: false
     t.string "name", null: false
+    t.string "error"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
