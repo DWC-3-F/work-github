@@ -1,1 +1,26 @@
 <h1>customers#index</h1>
+
+<h1>会員一覧</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>会員ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customer.each do |customer| %>
+    <tr>
+      <td><%= customer.id %></td>
+      <td><%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer) %></td>
+      <td><%= customer.email %></td>
+      <td><%= customer.is_active ? '有効' : '無効' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @customer %>
