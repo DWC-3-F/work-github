@@ -1,7 +1,9 @@
 <h1>Items#show</h1>
 
-<%= form_for @cart_item do |f| %>
+<% if @item.is_active == true %>
+  <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
   <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.select :amount, options_for_select((1..20).to_a), include_blank: "個数選択" %>
   <%= f.submit "カートに入れる" %>
+  <% end %>
 <% end %>
