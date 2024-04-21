@@ -9,8 +9,8 @@ class Admin::CustomersController < ApplicationController
   end
   
   def index
-    @customer = Customer.all
-    @customer = Customer.page(params[:page]).per(10)
+    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(10)
   end
   
   def update
@@ -26,6 +26,5 @@ class Admin::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email)
-    # エラーが出ているため注意！
   end
 end
