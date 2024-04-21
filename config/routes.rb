@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root to: 'public/homes#top'
   get "/about"=>"public/homes#about",as: 'about'
   # 顧客用
@@ -14,18 +14,16 @@ Rails.application.routes.draw do
     get '/customers/check', to: 'customers#check'
     patch '/customers/withdraw', to: 'customers#withdraw'
     patch '/customers/information', to: 'customers#update'
-    get 'addresses/index'
-    get 'addresses/edit'
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
   end
-  
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
 }
-  
+
   get '/admin', to: 'admin/homes#top'
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
@@ -35,6 +33,9 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
   end
   devise_for :users
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :addresses, only: [:index, :edit, :create, :update]
+  resources :user
 end
