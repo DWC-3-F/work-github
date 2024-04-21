@@ -22,14 +22,6 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
   end
   
-  #def withdraw
-   # @customer = current_customer
-    #@customer.update(is_active: false)
-    #reset_session
-    #flash[:notice] = "退会済みです"
-    #redirect_to root_path
-  #end
-  
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
@@ -42,9 +34,5 @@ class Public::CustomersController < ApplicationController
   
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email)
-  end
-  
-  def book_params
-    params.require(:book).permit(:title, :body, :user_id)
   end
 end

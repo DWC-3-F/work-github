@@ -2,7 +2,6 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :customer_state, only: [:create]
-  # before_action :is_deleted?, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -39,7 +38,6 @@ class Public::SessionsController < Devise::SessionsController
     return if customer.nil?
     # 【処理内容3】 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する
     return unless customer.valid_password?(params[:customer][:password])
-  
     # 【処理内容4】 アクティブでない会員に対する処理
     if customer.is_active == false
       redirect_to new_customer_registration_path
