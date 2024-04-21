@@ -1,1 +1,44 @@
 <h1>customers#show</h1>
+
+<h2>マイページ</h2>
+  <p>登録情報</p>
+  
+  <table>
+    <tr>
+      <td>会員ID</td>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <td>カナ</td>
+      <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.post_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+    <div>
+      <td>会員ステータス:</strong>
+      <% if @customer.is_active %>
+        有効
+      <% else %>
+        無効
+      <% end %>
+  </table>
+
+<%= link_to '編集する', edit_admin_customer_path %> <%= link_to '注文履歴一覧を見る', orders_path %>
