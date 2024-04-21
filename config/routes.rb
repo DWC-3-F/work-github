@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     patch '/customers/withdraw', to: 'customers#withdraw'
     patch '/customers/information', to: 'customers#update'
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:create, :index, :update, :destroy]
+    delete '/cart_items/destory_all', to: 'cart_items#destroy_all'
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
+    resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
 
   # 管理者用
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
   end
-  devise_for :users
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_path
     when Customer
-      '/customers/my_page'
+      customers_my_page_path
     else
       root_path
     end
@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
       root_path
     else
       root_path
+    end
   end
-end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])

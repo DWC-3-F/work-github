@@ -5,12 +5,39 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <% if customer_signed_in? %>
+    <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+    <ul>
+      <!--Topは必要ないですが一応-->
+      <li><%= link_to 'Top', root_path %></li>
+      <li><%= link_to '商品一覧', items_path %></li>
+      <li><%= link_to 'マイページ', customers_my_page_path %></li>
+      <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+    </ul>
+  <% elsif admin_signed_in? && !customer_signed_in? %>
+    <ul>
+      <!--Topは必要ないですが一応-->
+      <li><%= link_to 'Top', admin_path %></li>
+      <li><%= link_to '商品一覧', admin_items_path %></li>
+      <li><%= link_to '会員一覧', admin_customers_path %></li>
+      <li><%= link_to 'ジャンル一覧', admin_genres_path %></li>
+      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+    </ul>
+  <% else %>
+    <ul>
+      <!--Topは必要ないですが一応-->
+      <li><%= link_to 'Top', root_path %></li>
+      <li><%= link_to '商品一覧', items_path %></li>
+      <li><%= link_to 'About', about_path %></li>
+      <li><%= link_to '新規登録', new_customer_registration_path %></li>
+      <li><%= link_to 'ログイン', new_customer_session_path %></li>
+    </ul>
+  <% end %>
+  <%= yield %>
+</body>
 </html>
