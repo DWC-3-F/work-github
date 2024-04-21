@@ -1,7 +1,6 @@
 <h1>customers#show</h1>
 
-<h2>マイページ</h2>
-  <p>登録情報</p>
+<h2><%= "#{@customer.last_name}#{@customer.first_name}さんの会員詳細" %></h2>
   
   <table>
     <tr>
@@ -33,12 +32,14 @@
       <td><%= @customer.email %></td>
     </tr>
     <div>
-      <td>会員ステータス:</strong>
-      <% if @customer.is_active %>
-        有効
-      <% else %>
-        無効
-      <% end %>
+      <td>会員ステータス:</td>
+      <td>
+        <% if @customer.is_active %>
+          有効
+        <% else %>
+          退会
+        <% end %>
+      </td>
   </table>
 
 <%= link_to '編集する', edit_admin_customer_path %> <%= link_to '注文履歴一覧を見る', orders_path %>
