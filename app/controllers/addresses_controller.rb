@@ -19,7 +19,7 @@ class AddressesController < ApplicationController
 
   private
 
-  def book_params
+  def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end
 
