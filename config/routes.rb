@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root to: 'public/homes#top'
   get "/about"=>"public/homes#about",as: 'about'
   # 顧客用
@@ -20,13 +20,13 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show, :confilm, :success]
     resources :addresses, only: [:create, :index, :edit, :update, :destroy]
   end
-  
+
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
 }
-  
+
   get '/admin', to: 'admin/homes#top'
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :update]
@@ -37,4 +37,7 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :addresses, only: [:index, :edit, :create, :update]
+  resources :user
 end
