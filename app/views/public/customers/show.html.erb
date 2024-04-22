@@ -1,6 +1,6 @@
 <h2>マイページ</h2>
   <p>登録情報</p><%= link_to '編集する', customers_information_edit_path %>
-  
+
   <table>
     <tr>
       <td>氏名</td>
@@ -27,7 +27,7 @@
       <td><%= @customer.email %></td>
     </tr>
   </table>
-  
+
   <p>配送先</p>
   <%= link_to '一覧を見る', addresses_path %>
   <p>注文履歴</p>

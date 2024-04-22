@@ -9,7 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2024_04_21_123127) do
+
+ActiveRecord::Schema.define(version: 2024_04_22_030339) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
