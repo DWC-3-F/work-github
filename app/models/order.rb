@@ -11,4 +11,8 @@ class Order < ApplicationRecord
     preparing_for_shipping: 3,
     shipped: 4
   }
+  
+  def change
+    add_column :orders, :address_option, :string
+  end
 end
