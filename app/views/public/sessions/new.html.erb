@@ -1,11 +1,10 @@
-
 <h2>ログイン</h2>
 
 <p>会員の方はこちらからログイン</p>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <p>メールアドレス</p>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@wxsample.com" %>
   </div>
 
   <div class="field">

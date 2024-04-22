@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
   
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
   end
   
   def update
@@ -17,10 +17,9 @@ class Public::CartItemsController < ApplicationController
     redirect_to cart_items_path
   end 
 
-
   def destroy_all
     @cart_items = CartItem.all
-    @cart_items.destroy
+    @cart_items.destroy_all
     redirect_to cart_items_path
   end
  
@@ -33,10 +32,9 @@ class Public::CartItemsController < ApplicationController
       cart_item.save
       redirect_to cart_items_path
     elsif @cart_item.save
-    　@cart_items = @customer.cart_items.all
-    　render 'index'
+      redirect_to cart_items_path
     else
-      render 'index'
+      render cart_items_path
     end
   end
   
