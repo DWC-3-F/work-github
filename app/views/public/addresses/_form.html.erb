@@ -1,4 +1,4 @@
-<%= form_with model:address do |f| %>
+<%= form_with model:address, local:true do |f| %>
   <div class="form-group">
     <%= f.label :"郵便番号" %>
     <%= f.text_field :post_code, autocomplete: "shipping postal-code" %>
@@ -8,7 +8,7 @@
     <%= f.text_field :address, autocomplete: "shipping address" %>
   </div>
   <div class="form-group">
-    <%= f.label :"名前" %>
+    <%= f.label :"宛名" %>
     <%= f.text_field :name, class: 'form-control address_name' %>
   </div>
   <div class="form-group">
