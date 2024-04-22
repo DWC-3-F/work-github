@@ -1,2 +1,31 @@
+<h2>配送先登録/一覧</h2>
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= render 'form', address: @address %>
+
+<table>
+  <% @addresses.each do |address| %>
+    <tr>
+      <td>郵便番号</td>
+      <td>住所</td>
+      <td>宛名</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><%= address.post_code %></td>
+      <td><%= address.address %></td>
+      <td><%= address.name %></td>
+      <td>
+        <%= link_to '編集する', edit_addresses_path(@address) %>
+        <%= link_to '削除する', addresses_path, method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>

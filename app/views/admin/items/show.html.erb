@@ -2,7 +2,7 @@
 
 <h2>商品詳細</h2>
 <div>
-  <%= image_tag @item.image, alt: @item.name if @item.image.attached? %>
+  <%= image_tag @item.image, size: '200x200', alt: @item.name if @item.image.attached? %>
 </div>
 
 <table>
