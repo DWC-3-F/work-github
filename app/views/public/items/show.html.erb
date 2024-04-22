@@ -1,9 +1,26 @@
-<h1>Items#show</h1>
-
-<% if @item.is_active == true %>
-  <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
-    <%= f.select :amount, options_for_select((1..20).to_a), include_blank: "個数選択" %>
-    <%= f.hidden_field :item_id, :value => @item.id %>
-   <%= f.submit "カートに入れる" %>
+<!--<h1>Items#show</h1>-->
+<div>
+  <%= image_tag @item.image, size: '200x200' %>
+</div>
+<table>
+  <tr>
+    <td><%= @item.name %></td>
+  </tr>
+  <tr>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <td>￥<%= @item.add_tax_price.to_s(:delimited) %>（税込）</td>
+  </tr>
+  <tr>
+  <% if @item.is_active == true %>
+    <td>
+      <%= form_with(model: @cart_item,url: cart_items_path, method: :post,local: true)do |f| %>
+        <%= f.select :amount, options_for_select((1..20).to_a), include_blank: "個数選択" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+       <%= f.submit "カートに入れる" %>
+      <% end %>
+    </td>
   <% end %>
-<% end %>
+  </tr>
+</table>

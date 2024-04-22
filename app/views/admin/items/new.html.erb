@@ -2,26 +2,26 @@
 
 <h2>商品新規登録</h2>
 <table>
-  <%= form_with model: @item, url: new_admin_item_path do |f| %>
+  <%= form_with model: @item, url: admin_items_path do |f| %>
   <tr>
     <td><%= f.label :image, '商品画像', for: 'item_image' %></td>
     <td><%= f.file_field :image, id: 'item_image' %></td>
   </tr>
   <tr>
     <td><%= f.label :name, '商品名' %></td>
-    <td><%= f.text_field :name, class: "form-control name" %></td>
+    <td><%= f.text_field :name, placeholder: "商品名", class: "form-control name" %></td>
   </tr>
   <tr>
     <td><%= f.label :introduction, '商品説明' %></td>
-    <td><%= f.text_area :introduction, class: "form-control introduction" %></td>
+    <td><%= f.text_area :introduction, placeholder: 'ここに説明文を記述します', class: "form-control introduction" %></td>
   </tr>
   <tr>
     <td><%= f.label :genre_id, 'ジャンル' %></td>
-    <td><%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: 'Select Genre', class: "form-control genre-select" %></td>
+    <td><%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: '選択してください', class: "form-control genre-select" %></td>
   </tr>
   <tr>
     <td><%= f.label :price, '税抜価格' %></td>
-    <td><%= f.text_field :price, class: "form-control introduction" %>円</td>
+    <td><%= f.text_field :price, placeholder: '1000', class: "form-control introduction" %>円</td>
   </tr>
   <tr>
     <td><%= f.label :is_active, '販売ステータス' %></td>
