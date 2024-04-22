@@ -3,9 +3,9 @@ class Public::OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
   end
-  
+
   def create
-    @customer = current_coustomer
+    @customer = current_customer
     @order = Order.new
     @order.customer_id = @customer.id
     @order.shipping_cost = 800
@@ -22,11 +22,11 @@ class Public::OrdersController < ApplicationController
     else
       @order.status = 0
     end
-      
+
     address_type = params[:order][:address_type]
     case address_type
-      when "member_address"
-        @order.post_code = @coustomer.post_code
+      when "own_address"
+        @order.post_code = @customer.post_code
         @order.address = @customer.address
         @order.name = @customer.last_name + @customer.first_name
       when "registered_address"
@@ -40,7 +40,7 @@ class Public::OrdersController < ApplicationController
         @order.address = params[:order][:new_address]
         @order.name = params[:order][:new_name]
     end
-    
+
     if @order.save
       if @order.status == 0
         @cart_items.each do |cart_item|
@@ -55,27 +55,28 @@ class Public::OrdersController < ApplicationController
       redirect_to success_orders_path
     else
       render :items
-    end 
+    end
   end
-  
+
   def index
     @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
   end
-  
+
   def show
     @order = Order.find(params[:id])
+    @order_details= OrderDetail.where(order_id: @order.id)
   end
-  
+
   def confirm
     @customer = current_customer
     @cart_items = CartItem.where(customer_id: @customer.id)
     @shipping_cost = 800
-    @selected_payment_method = params[:order][:peyment_method]
+    @selected_payment_method = params[:order][:payment_method]
     ary = []
       @cart_items.each do |cart_item|
         ary << cart_item.item.price.to_i * cart_item.amount
       end
-    
+
     @cart_items_price = ary.sum
     @total_payment = @shipping_cost + @cart_items_price
     @address_type = params[:order][:address_type]
@@ -97,9 +98,9 @@ class Public::OrdersController < ApplicationController
         end
     end
   end
-  
+
   private
-  
+
   def order_params
     params.require(:order).permit(:customer_id, :post_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end

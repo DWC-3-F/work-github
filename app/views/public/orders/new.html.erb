@@ -3,15 +3,15 @@
   <h3>支払い方法</h3>
   <div>
     <%#= f.radio_button :payment_method, Order.payment_methods.key(0), id: "payment_method_credit_card" %>
-    <%= f.radio_button :payment_method, :credit_card %>
+    <%= f.radio_button :payment_method, "credit_card" %>
     <%#= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
-    <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
+    <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: "credit_card"} %>
   </div>
   <div>
     <%#= f.radio_button :payment_method, Order.payment_methods.key(1), id: "payment_method_transfer" %>
-    <%= f.radio_button :payment_method, :transfer %>
+    <%= f.radio_button :payment_method, "transfer" %>
     <%#= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
-    <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
+    <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: "transfer"} %>
   </div>
   <h3>お届け先</h3>
     <div>
@@ -32,9 +32,10 @@
       <%= f.label :address_type, "登録済住所から選択" %>
     </div>
     <div>
-      <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display), include_blank: "登録してある配送先住所から選択" %>
+      <%#= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display), include_blank: "登録してある配送先住所から選択" %>
       <%# @customer.addresses.each do |address| %>
         <%#= f.select :address_id, options_for_select(address.address_display, f.object.address_id) %>
+        <%= f.select :registered_address_id, @customer.addresses.all.map { |a| [a.address_display, a.id] } ,include_blank: "登録してある配送先住所から選択" %>
       <%# end %>
     </div>
     <div>
