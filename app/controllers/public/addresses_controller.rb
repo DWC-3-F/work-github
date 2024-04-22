@@ -1,10 +1,10 @@
 class Public::AddressesController < ApplicationController
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
       redirect_to customers_my_page_path, notice: "You have created address successfully."
     else
-      flash.now[:alert] = "Address creation failed."
       render 'index'
     end
   end
@@ -20,8 +20,11 @@ class Public::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address_params)
-    redirect_to addresses_path
+    if @address.update(address_params)
+      redirect_to addresses_path(@adress), notice: "You have updated book successfully."
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -31,6 +34,6 @@ class Public::AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:post_code, :address, :name, :customer_id)
+    params.require(:address).permit(:post_code, :address, :name)
   end
 end

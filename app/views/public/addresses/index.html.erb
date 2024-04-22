@@ -1,2 +1,15 @@
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <%= render 'form', address: @address %>
+
+<%#= link_to '編集する', edit_address_path(@address) %>
+<% @addresses.each do |address| %>
+  <%= link_to '編集', edit_address_path(address) %>
+<% end %>
