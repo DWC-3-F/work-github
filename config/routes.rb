@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
-        post 'confilm', to: 'orders#confilm'
+        post 'confirm', to: 'orders#confirm'
         get 'success', to: 'orders#success'
       end
     end
