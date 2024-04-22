@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      redirect_to customers_my_page_path, notice: "You have created address successfully."
+      redirect_to addresses_path
     else
       render 'index'
     end
