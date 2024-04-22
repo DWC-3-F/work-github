@@ -81,7 +81,8 @@ class Public::OrdersController < ApplicationController
     @address_type = params[:order][:address_type]
     case @address_type
       when "own_address"
-        @selected_address = @customer.post_code + " " + @customer.address + " " + @customer.last_name + @customer.first_name
+@selected_address = "#{@customer.post_code} #{@customer.address} #{@customer.last_name} #{@customer.first_name}"
+
       when "registered_address"
         unless params[:order][:registered_address_id] == ""
           selected = Address.find(params[:order][:registered_address_id])
@@ -96,7 +97,6 @@ class Public::OrdersController < ApplicationController
           render :new
         end
     end
-    
   end
   
   private
