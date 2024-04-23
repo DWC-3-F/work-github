@@ -1,6 +1,5 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
-  belongs_to :order_detail
   belongs_to :item
   
   enum making_status: {
