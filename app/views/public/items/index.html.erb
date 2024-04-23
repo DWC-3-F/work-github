@@ -10,7 +10,7 @@
           <% end %>
         <% end %>
         <h5><%= item.name %></h5>
-        <h5>￥<%= item.add_tax_price.to_s(:delimited) %></h5>
+        <h5>￥<%= number_with_delimiter(item.add_tax_price) %></h5>
       </div>
     <% end %>
   </div>
