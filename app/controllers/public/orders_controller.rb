@@ -8,14 +8,14 @@ class Public::OrdersController < ApplicationController
     @customer = current_customer
     @order = Order.new
     @order.customer_id = @customer.id
-    @order.shopping_cost = 800
+    @order.shipping_cost = 800
     @cart_items = CartItem.where(customer_id: @customer.id)
     ary = []
       @cart_items.each do |cart_item|
         ary << cart_item.item.price*cart_item.amount
       end
     @cart_items_price = ary.sum
-    @order.total_payment = @order.shopping_cost + @cart_items_price
+    @order.total_payment = @order.shipping_cost + @cart_items_price
     @order.payment_method = params[:order][:payment_method]
     if @order.payment_method == "credit_card"
       @order.status = 1
