@@ -1,10 +1,13 @@
 class Public::AddressesController < ApplicationController
+   before_action :authenticate_customer!
+   
   def create
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
       redirect_to addresses_path
     else
+      @addresses = current_customer.addresses.all
       render 'index'
     end
   end
