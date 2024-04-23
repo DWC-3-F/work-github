@@ -10,7 +10,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def index
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
     @address = Address.new
   end
 
@@ -21,7 +21,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_to addresses_path(@adress), notice: "You have updated book successfully."
+      redirect_to addresses_path(@address), notice: "You have updated book successfully."
     else
       render 'edit'
     end
