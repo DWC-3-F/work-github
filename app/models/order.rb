@@ -11,4 +11,12 @@ class Order < ApplicationRecord
     preparing_for_shipping: 3,
     shipped: 4
   }
+  
+  validates :post_code, presence: true
+  validates :address, presence: true
+  validates :name, presence: true
+  validates :shipping_cost, presence: true
+  validates :total_payment, presence: true
+  validates :payment_method, presence: true
+  
 end

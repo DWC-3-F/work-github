@@ -8,4 +8,8 @@ class OrderDetail < ApplicationRecord
     in_progress: 2,
     completed: 3
   }
+  
+  validates :price, presence: true
+  validates :amount, presence: true
+  
 end
