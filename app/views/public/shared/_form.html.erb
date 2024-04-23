@@ -2,28 +2,36 @@
  <table>
    <tr>
     <td>名前</td>
-    <td><%= f.label :last_name,'（姓）' %><%= f.text_field :last_name, autofocus: true, placeholder: "令和" %></td>
-    <td><%= f.label :first_name, '（名）' %><%= f.text_field :first_name, placeholder: "道子" %></td>
+    <td><%= f.label :last_name,'（姓）' %></td>
+    <td><%= f.text_field :last_name, autofocus: true, placeholder: "令和" %></td>
+    <td><%= f.label :first_name, '（名）' %></td>
+    <td><%= f.text_field :first_name, placeholder: "道子" %></td>
   </tr>
   <tr>
     <td>フリガナ</td>
-    <td><%= f.label :last_name_kana, '（セイ）' %><%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %></td>
-    <td><%= f.label :first_name_kana, '（メイ）' %><%= f.text_field :first_name_kana, placeholder: "ミチコ" %></td>
+    <td><%= f.label :last_name_kana, '（セイ）' %></td>
+    <td><%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %></td>
+    <td><%= f.label :first_name_kana, '（メイ）' %></td>
+    <td><%= f.text_field :first_name_kana, placeholder: "ミチコ" %></td>
   </tr>
   <tr>
     <td>メールアドレス</td>
+    <td></td>
     <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@exsdample.com" %></td>
   </tr>
   <tr>
     <td>郵便番号(ハイフンなし)</td>
+    <td></td>
     <td><%= f.text_field :post_code, placeholder: "0000000" %></td>
   </tr>
   <tr>
     <td>住所</td>
+    <td></td>
     <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
   </tr>
   <tr>
     <td>電話番号(ハイフンなし)</td>
+    <td></td>
     <td><%= f.text_field :telephone_number, placeholder: "00000000000" %></td>
   </tr>
   <tr>
@@ -32,13 +40,16 @@
         <em>(<%= @minimum_password_length %>文字以上)</em>
       <% end %>
     </td>
+    <td></td>
     <td><%= f.password_field :password, autocomplete: "new-password" %></td>
   </tr>
   <tr>
     <td>パスワード(確認用)</td>
+    <td></td>
     <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
   </tr>
   <tr>
+    <td></td>
     <td></td>
     <td><%= f.submit "新規登録", class: 'action' %></td>
   </tr>

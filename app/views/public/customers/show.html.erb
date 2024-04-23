@@ -1,6 +1,8 @@
 <h2>マイページ</h2>
-  <p>登録情報</p><%= link_to '編集する', customers_information_edit_path %>
-
+  <div>
+    <p>登録情報 </p><%= link_to '編集する', customers_information_edit_path %>
+  </div>
+  
   <table>
     <tr>
       <td>氏名</td>
@@ -34,4 +36,4 @@
   <%= link_to '一覧を見る', orders_path %>
 
 
-<%= link_to 'ログアウト', destroy_customer_session_path,method: :delete %>
+<%= link_to 'ログアウト', destroy_customer_session_path,method: :delete, class: 'delete-link' %>
