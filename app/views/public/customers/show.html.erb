@@ -1,8 +1,8 @@
 <div class='container'>
     <div class='row'>
       <div class='col-md-3'>
-          <h3>マイページ</h3>
-          <td><strong>登録情報</strong><%= link_to '編集する', customers_information_edit_path, class:"btn btn-sm btn-success"%></td>
+          <h5>マイページ</h5>
+          <td><strong>登録情報</strong> <%= link_to '編集する', customers_information_edit_path, class:"btn btn-sm btn-success"%></td>
       </div>
     </div>
 </div>
@@ -35,5 +35,12 @@
       </tr>
    </table>
 </div>
-  <p><strong>配送先</strong><%= link_to '一覧を見る', addresses_path, class:"btn btn-primary" %></p>
-  <p><strong>注文履歴</strong><%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %></p>
+<div class='container'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <p><strong>配送先</strong> <%= link_to '一覧を見る', addresses_path, class:"btn btn-primary" %></p>
+        <p><strong>注文履歴</strong> <%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %></p>
+      </div>
+    </div>
+</div>
+  
