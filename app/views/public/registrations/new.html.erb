@@ -1,8 +1,13 @@
-<h2>新規会員登録</h2>
+<div class='container px-5'>
+  <h4>新規会員登録</h4>
+</div>
 
   <%= render "public/shared/error_messages", resource: resource %>
-  
+
   <%= render 'public/shared/form', resource: resource %>
 
-<p>既に登録済みの方</p>
+<div class='container px-5'>
+  <h4>既に登録済みの方</h4>
+  <div class="col-8">
 <%= render "public/shared/links" %>
+</div></div>
