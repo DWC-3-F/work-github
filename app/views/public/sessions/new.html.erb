@@ -1,9 +1,8 @@
 
 <h2>ログイン</h2>
-
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <p>会員の方はこちらからログイン</p>
 <table>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <tr>
     <td>メールアドレス</td>
     <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@wxsample.com" %></td>
@@ -16,7 +15,7 @@
     <td></td>
     <td><%= f.submit "ログイン" %></td>
   </tr>
-  <% end %>
 </table>
+<% end %>
 <p>会員登録がお済みでない方</p>
 <%= render "public/shared/links" %>
