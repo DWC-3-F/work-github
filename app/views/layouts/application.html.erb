@@ -12,14 +12,12 @@
 <body>
   <% if customer_signed_in? %>
     <p>ようこそ、<%= current_customer.last_name %>さん！</p>
-    <ul>
-      <!--Topは必要ないですが一応-->
-      <li><%= link_to 'Top', root_path %></li>
-      <li><%= link_to '商品一覧', items_path %></li>
-      <li><%= link_to 'マイページ', customers_my_page_path %></li>
-      <li><%= link_to 'カート', cart_items_path %></li>
-      <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'delete-link' %></li>
-    </ul>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-default"><%= link_to 'マイページ', customers_my_page_path %></button>
+      <button type="button" class="btn btn-default"><%= link_to '商品一覧', items_path %></button>
+      <button type="button" class="btn btn-default"><%= link_to 'カート', cart_items_path %></button>
+      <button type="button" class="btn btn-default"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'delete-link' %></button>
+    </div>
   <% elsif admin_signed_in? && !customer_signed_in? %>
     <ul>
       <!--Topは必要ないですが一応-->
