@@ -40,4 +40,29 @@
   align-items: center;
   justify-content: center }
   
-  
+.menu-button {
+    width: 3cm;
+    height: 0.7cm;
+    display: inline-block;
+    padding: 10px 0px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+}
+
+.menu-button:hover {
+    background-color: #f0f0f0;
+}
