@@ -1,0 +1,17 @@
+<% if address.errors.any? %>
+  <%= address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% address.errors.full_messages.each do |message| %>
+      <% if message.include?("Post code") %>
+        <% message.sub!("Post code", "郵便番号(ハイフンなし) ") %>
+      <% end %>
+      <% if message.include?("Address") %>
+        <% message.sub!("Address", "住所 ") %>
+      <% end %>
+      <% if message.include?("Name") %>
+        <% message.sub!("Name", "宛名 ") %>
+      <% end %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
