@@ -1,5 +1,6 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
+  belongs_to :item
   
   enum making_status: {
     not_available: 0,
@@ -7,4 +8,8 @@ class OrderDetail < ApplicationRecord
     in_progress: 2,
     completed: 3
   }
+  
+  validates :price, presence: true
+  validates :amount, presence: true
+  
 end

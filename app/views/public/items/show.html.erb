@@ -10,7 +10,7 @@
     <td><%= @item.introduction %></td>
   </tr>
   <tr>
-    <td>￥<%= @item.add_tax_price.to_s(:delimited) %>（税込）</td>
+    <td>￥<%= number_with_delimiter(@item.add_tax_price) %>（税込）</td>
   </tr>
   <tr>
   <% if @item.is_active == true %>

@@ -1,5 +1,6 @@
 <h2>配送先登録/一覧</h2>
-<%= render 'error', address: @address %>
+
+<%= render "public/shared/error_messages", resource: resource %>
 
 <%= render 'form', address: @address %>
 
@@ -17,7 +18,7 @@
     <td><%= address.name %></td>
     <td>
       <%= link_to '編集する', edit_address_path(address) %>
-      <%= link_to '削除する', addresses_path(address), method: :delete %>
+      <%= link_to '削除する', address_path(address), method: :delete, class: 'delete-link' %>
     </td>
   </tr>
   <% end %>
