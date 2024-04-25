@@ -1,26 +1,90 @@
-<h1>orders#show</h1>
+<h2>注文履歴詳細</h2>
 
-<h1>注文履歴詳細</h1>
+<p><strong>購入者</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= "#{@order.customer.last_name} #{@order.customer.first_name}" %></p>
 
-<p><strong>購入者</strong> <%= "#{@order.customer.last_name} #{@order.customer.first_name}" %></p>
+<p><strong>注文日</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.created_at.strftime("%Y/%m/%d") %></p>
 
-<p><strong>注文日</strong> <%= @order.created_at.strftime("%Y/%m/%d") %></p>
-
-<p><strong>配送先</strong> 〒<%= @order.post_code %><%= @order.address %><br><%= @order.name %></p>
+<p><strong>配送先</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〒<%= @order.post_code %><%= @order.address %><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.name %></p>
 
 
-<p><strong>支払方法:</strong> <%= @order.payment_method_i18n %></p>
+<p><strong>支払方法</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.payment_method_i18n %></p>
 
-<div>
-    <p><strong>注文ステータス:</strong></p>
-    <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
-        <%= f.select :status, Order.statuses_i18n.keys.map { |status| [Order.statuses_i18n[status], status] }, selected: @order.status %>
-        <%= f.submit "更新", class: "btn btn-primary" %>
-    <% end %>
+<div class="status-container">
+    <p><strong>注文ステータス</strong></p>
+    <div class="status-form">
+        <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
+            <%= f.select :status, Order.statuses_i18n.keys.map { |status| [Order.statuses_i18n[status], status] }, selected: @order.status %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+        <% end %>
+    </div>
 </div>
 
-<h2>注文詳細</h2>
-<table class="table">
+<style>
+table {
+    padding: 0;
+    width: 16cm;
+    height: 1cm;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table td a {
+    text-decoration: underline;
+    color: black;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 8cm;
+    height: 1cm;
+}
+
+p2 {
+    position: absolute;
+    top: 64%;
+    right: 0;
+    left: 70%;
+}
+
+.btn.btn-success {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 10px;
+    margin-top: 0px;
+}
+
+form select {
+    width: 4.5cm;
+    height: 1cm;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.status-container {
+    display: flex; 
+    align-items: center;
+}
+
+.status-form {
+    margin-left: 10px;
+}
+
+</style>
+
+<table class="table-half">
   <thead>
     <tr>
       <th>商品名</th>
@@ -46,18 +110,15 @@
               [OrderDetail.making_statuses_i18n[:in_progress], :in_progress],
               [OrderDetail.making_statuses_i18n[:completed], :completed]
             ] %>
-        </td>
-        <td>
-            <%= f.submit "更新", class: "btn btn-primary" %>
+          <%= f.submit "更新", class: "btn btn-success" %>
           <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<div>
-    <p><strong>商品合計:</strong> <%= number_to_currency(@order.order_details.sum { |order_detail| order_detail.price * order_detail.amount }, unit: "円") %></p>
-    <p><strong>送料:</strong> <%= number_to_currency(@order.shipping_cost, unit: "円") %></p>
-    <p><strong>請求合計金額:</strong> <strong><%= number_to_currency(@order.total_payment, unit: "円") %></strong></p>
-</div>
+<p2>
+<strong>商品合計:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= number_to_currency(@order.order_details.sum { |order_detail| order_detail.price * order_detail.amount }, unit: "円") %>
+<br><strong>送料:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= number_to_currency(@order.shipping_cost, unit: "円") %>
+<br><strong>請求合計金額:</strong> &nbsp;&nbsp;&nbsp;&nbsp;<strong><%= number_to_currency(@order.total_payment, unit: "円") %></strong>
+</p2>
