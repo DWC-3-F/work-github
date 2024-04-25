@@ -40,7 +40,9 @@ h2 {
 
 .actions {
     margin-top: 10px;
-    text-align: left;
+    position: relative;
+    right: 0%;
+    left: 40%;
 }
 
 body {
@@ -49,8 +51,8 @@ body {
 }
 </style>
 
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="form-container">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :email, 'メールアドレス' %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@exsample.com" %>
@@ -64,8 +66,7 @@ body {
     <div class="actions">
       <%= f.submit "ログイン", class: 'btn btn-primary' %>
     </div>
-  <% end %>
 </div>
-
+<% end %>
 <%= render "admin/shared/links" %>
 
