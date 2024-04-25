@@ -1,6 +1,6 @@
 <h2>注文履歴詳細</h2>
 
-<p><strong>購入者</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= "#{@order.customer.last_name} #{@order.customer.first_name}" %></p>
+<p><strong>購入者</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "#{@order.customer.last_name} #{@order.customer.first_name}", admin_customer_path(@order.customer), class: "name-link" %></p>
 
 <p><strong>注文日</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.created_at.strftime("%Y/%m/%d") %></p>
 
@@ -82,6 +82,15 @@ form select {
     margin-left: 10px;
 }
 
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.name-link {
+    color: #000000;
+    text-decoration: underline;
+}
 </style>
 
 <table class="table-half">

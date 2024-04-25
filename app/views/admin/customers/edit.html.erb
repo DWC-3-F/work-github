@@ -1,10 +1,63 @@
-<h1>customers#edit</h1>
-
 <h2><%= "#{@customer.last_name}#{@customer.first_name}さんの会員情報編集" %></h2>
+
+<style>
+table {
+    width: 12cm;
+    height: 1cm;
+    border-spacing: 0;
+    position: absolute;
+    top: 20%;
+    right: 43%;
+    left: 38%;
+    font-size: 18px;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+}
+
+
+
+table td a {
+    text-decoration: underline;
+    color: black;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 13cm;
+    height: auto;
+    font-size: auto;
+}
+
+.btn.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+    border-radius: 10px;
+    text-decoration: none;
+    position: relative;
+    right: 0%;
+    left: 100%;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
 
 <%= form_with model: @customer, url: admin_customer_path, method: :patch, local: true do |f| %>
 <table>
-
+  <tr>
+    <td>会員ID</td>
+    <td><%= @customer.id %></td>
+  </tr>
   <tr>
     <td>氏名</td>
     <td><%= f.text_field :last_name, autofocus: true %></td>
@@ -41,7 +94,7 @@
   </tr>
   
   <tr>
-    <td><%= f.submit '変更を保存' %></td>
+    <td><%= f.submit '変更を保存', class: 'btn btn-success' %></td>
   </tr>
 </table>
 <% end %>
