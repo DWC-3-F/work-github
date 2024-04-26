@@ -1,5 +1,5 @@
 
-<h2>ログイン</h2>
+<h4>ログイン</h4>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <p>会員の方はこちらからログイン</p>
 <table>
@@ -13,7 +13,7 @@
   </tr>
   <tr>
     <td></td>
-    <td><%= f.submit "ログイン" %></td>
+    <td><%= f.submit "ログイン", class:"btn btn-primary" %></td>
   </tr>
 </table>
 <% end %>
