@@ -1,15 +1,29 @@
-<h2>配送先登録/一覧</h2>
+<style>
+  h4 {
+    margin: 0 0 10px 50px;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 6cm;
+    height: 0.8cm;
+  }
+</style>
+
+<h4>配送先登録/一覧</h4>
 
 <%#= render "public/shared/error_messages", resource: resource %>
 
+<!--<div class='container'>-->
+
 <%= render 'form', address: @address %>
 
-<table>
-  <tr>
-    <td>郵便番号</td>
-    <td>住所</td>
-    <td>宛名</td>
-    <td></td>
+<div class='col-md-8'>
+<table class="table table-bordered" style="margin: 50px 0 0 10px;">
+  <tr bgcolor="#EEEEEE">
+    <th width="10%">郵便番号</th>
+    <th width="40%">住所</th>
+    <th width="15%">宛名</th>
+    <th width="35%"></th>
   </tr>
   <% @addresses.each do |address| %>
   <tr>
@@ -17,9 +31,11 @@
     <td><%= address.address %></td>
     <td><%= address.name %></td>
     <td>
-      <%= link_to '編集する', edit_address_path(address) %>
-      <%= link_to '削除する', address_path(address), method: :delete, class: 'delete-link' %>
+      <%= link_to '編集する', edit_address_path(address), class: "btn btn-success" %>
+      <%= link_to '削除する', address_path(address), method: :delete, class: "btn btn-danger" %>
     </td>
   </tr>
   <% end %>
 </table>
+</div>
+</div>
