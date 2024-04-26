@@ -1,61 +1,155 @@
+<style>
+h3 {
+      background-color: #f5f5f5;
+      text-align: center;
+      position: relative;
+      right: 0%;
+      left: 20%;
+      padding: 0;
+      width: 5cm;
+      height: 1cm;
+      margin-bottom: 15px;
+}
+
+.btn.btn-success {
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+}
+
+.btn.btn-primary {
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+}
+
+/* スマホ対応させたい場合は、これを消す */
+.container {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 10px;
+    margin-top: 1.5cm;
+    margin-bottom: -3cm;
+    width: 100%;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table td {
+    border: 1px solid black;
+}
+
+.table td:first-child {
+    width: 200px;
+}
+
+.order-content {
+    width: 52%; /* 表の幅を100%に設定 */
+    margin-top: 170px; /* 上の表2つからのスペースを確保 */
+    position: relative;
+    right: 0%;
+    left: 20%;
+}
+
+.order-info td:first-child {
+    background-color: #f5f5f5;
+}
+
+.billing-info td:first-child {
+    background-color: #f5f5f5;
+}
+
+.order-content tr:first-child td {
+    background-color: #f5f5f5;
+}
+
+.order-content tr:first-child {
+    width: 700px;
+}
+
+.order-content td:nth-child(2) {
+    width: 100px;
+}
+
+.order-content td:nth-child(3) {
+    width: 10%;
+}
+.order-content td:nth-child(4) {
+    width: 1%;
+}
+
+.billing-info {
+    margin-top: -96px;
+}
+</style>
+
 <div class="col-md-12">
   <h3>注文履歴詳細</h3>
-  
-  <h4>注文情報</h4>
-  <table class="table">
-    <tr>
-      <td>注文日</td>
-      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-    </tr>
-    <tr>
-      <td>配送先</td>
-      <td>
-        〒<%= @order.post_code %><br>
-        <%= @order.address %><br>
-        <%= @order.name %>
-      </td>
-    </tr>
-    <tr>
-      <td>支払い方法</td>
-      <td><%= @order.payment_method_i18n %></td>
-    </tr>
-    <tr>
-      <td>ステータス</td>
-      <td><%= @order.status_i18n %></td>
-    </tr>
-  </table>
 
-  <h4>請求情報</h4>
-  <table class="table">
-    <tr>
-      <td>商品合計</td>
-      <td><%= number_with_delimiter(@order.total_payment) %></td>
-    </tr>
-    <tr>
-      <td>配送料</td>
-      <td><%= @order.shipping_cost %></td>
-    </tr>
-    <tr>
-      <td>ご請求額</td>
-      <td><%= number_with_delimiter(@order.total_payment + @order.shipping_cost) %></td>
-    </tr>
-  </table>
+<div class="container">
+    <div class="order-info">
+        <h4>注文情報</h4>
+        <table class="table">
+            <tr>
+                <td>注文日</td>
+                <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+                <td><br>配送先</td>
+                <td>〒<%= @order.post_code %><br><%= @order.address %><br><%= @order.name %></td>
+            </tr>
+            <tr>
+                <td>支払い方法</td>
+                <td><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+                <td>ステータス</td>
+                <td><%= @order.status_i18n %></td>
+            </tr>
+        </table>
+    </div>
 
-  <h4>注文内容</h4>
-  <table class="table">
+    <div class="billing-info">
+        <h4>請求情報</h4>
+        <table class="table">
+            <tr>
+                <td>商品合計</td>
+                <td><%= number_with_delimiter(@order.total_payment) %></td>
+            </tr>
+            <tr>
+                <td>配送料</td>
+                <td><%= @order.shipping_cost %></td>
+            </tr>
+            <tr>
+                <td>ご請求額</td>
+                <td><%= number_with_delimiter(@order.total_payment + @order.shipping_cost) %></td>
+            </tr>
+        </table>
+    </div>
+</div>
+  <div class="order-content">
+    <h4>注文内容</h4>
+    <table class="table">
     <tr>
-      <td>商品</td>
-      <td>単価(税込)</td>
-      <td>個数</td>
-      <td>小計</td>
+        <td>商品</td>
+        <td>単価(税込)</td>
+        <td>個数</td>
+        <td>小計</td>
     </tr>
     <% @order_details.each do |order_detail| %>
-      <tr>
-        <td><%= order_detail.item.name %></td>
-        <td><%= number_with_delimiter(order_detail.item.add_tax_price) %></td>
-        <td><%= order_detail.amount %></td>
-        <td><%= number_with_delimiter(order_detail.amount * order_detail.item.price) %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
+        <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= number_with_delimiter(order_detail.item.add_tax_price) %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= number_with_delimiter(order_detail.amount * order_detail.item.price) %></td>
+        </tr>
+        <% end %>
+    </table>
+  </div>
+
+
+
