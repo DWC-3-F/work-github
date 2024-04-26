@@ -1,14 +1,58 @@
+<h2>会員情報編集</h2>
 <style>
-  h4 {
-      background-color: #f5f5f5;
-      text-align: center;
-      padding: 0;
-      width: 5cm;
-      height: 0.8cm;
-  }
-</style>
+table {
+    width: 12cm;
+    height: 1cm;
+    border-spacing: 0;
+    position: absolute;
+    top: 20%;
+    right: 55%;
+    left: 25%;
+    font-size: 18px;
+}
 
-<h4>会員情報編集</h4>
+th, td {
+    padding: 20px;
+    text-align: left;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 7cm;
+    height: 1;
+}
+
+.btn.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    width: 7cm;
+    height: 1cm;
+    border-radius: 10px;
+    text-decoration: none;
+    position: relative;
+    right: 0%;
+    left: 115%;
+}
+
+.btn.btn-danger {
+    font-weight: bold;
+    width: 3cm;
+    height: 1cm;
+    border-radius: 10px;
+    text-decoration: none;
+    position: relative;
+    right: 0%;
+    left: 200%;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
 
 <%= form_with model: @customer, url: customers_information_path, method: :patch, local: true do |f| %>
 <table>
