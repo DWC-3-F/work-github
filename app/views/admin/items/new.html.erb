@@ -1,8 +1,9 @@
 <h1>items#new</h1>
 
+<%= form_with model: @item, url: admin_items_path do |f| %>
 <h2>商品新規登録</h2>
 <table>
-  <%= form_with model: @item, url: admin_items_path do |f| %>
+  
   <tr>
     <td><%= f.label :image, '商品画像', for: 'item_image' %></td>
     <td><%= f.file_field :image, id: 'item_image' %></td>
@@ -33,5 +34,6 @@
   <tr>
     <td><%= f.submit '新規登録', class: 'btn btn-secondary' %></td>
   </tr>
-  <% end %>
+
 </table>
+<% end %>
