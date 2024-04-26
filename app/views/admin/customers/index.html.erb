@@ -1,5 +1,5 @@
 <h2>会員一覧</h2>
-
+<br></br>
 <style>
 table {
     width: 100%;
@@ -30,6 +30,21 @@ h2 {
     width: 6cm;
     height: 1cm;
 }
+
+.status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #ccc;
+    font-weight: bold;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
 </style>
 
 <table class="table">
@@ -47,7 +62,9 @@ h2 {
       <td><%= customer.id %></td>
       <td><%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer) %></td>
       <td><%= customer.email %></td>
-      <td><%= customer.is_active ? '有効' : '退会' %></td>
+      <td class="<%= customer.is_active ? 'status-active' : 'status-inactive' %>">
+        <%= customer.is_active ? '有効' : '退会' %>
+      </td>
     </tr>
     <% end %>
   </tbody>

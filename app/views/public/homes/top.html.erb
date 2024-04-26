@@ -1,14 +1,25 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-8 text-left" style="margin: 100px 70px 100px 130px;">
-     <p>ようこそ、ながのCAKEへ！<br>
-        このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧はできますが、<br>
-        購入には会員登録が必要になります。</p>
-    </div>
-  </div>
+<style>
+body {
+    width: 80%;
+    margin: 0 auto;
+}
 
-  <h2>新着商品</h2>
+.left-aligned-text {
+    text-align: left;
+    position: relative;
+    right: 0%;
+    left: 35%;
+    font-weight: 500;
+    font-size: 20px;
+}
+</style>
+
+<p class="left-aligned-text">ようこそ、ながのCAKEへ！<br>
+    このサイトは、ケーキ販売のECサイトになります。<br>
+    会員でない方も商品の閲覧はできますが、<br>
+    購入には会員登録が必要になります。</p>
+
+  <h2><strong>新着商品</strong></h2>
   <div class="item-container">
     <div class="item-grid">
       <% @items.each do |item| %>

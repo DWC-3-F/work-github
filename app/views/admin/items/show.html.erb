@@ -1,7 +1,74 @@
-<h1>items#show</h1>
-
 <h2>商品詳細</h2>
-<div>
+
+<style>
+table {
+    padding: 0;
+    width: 12cm;
+    height: 1cm;
+    border-collapse: separate;
+    border-spacing: 0;
+    position: absolute;
+    top: 25%;
+    right: 35;
+    left: 40%;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table td a {
+    text-decoration: underline;
+    color: black;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 5cm;
+    height: 1cm;
+}
+
+.btn.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #ccc;
+    font-weight: bold;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+
+<div class="container">
   <%= image_tag @item.image, size: '200x200', alt: @item.name if @item.image.attached? %>
 </div>
 
@@ -19,12 +86,12 @@
     <td><%= @item.genre.name %></td>
   </tr>
   <tr>
-    <td>税込価格(税抜価格)</td>
+    <td>税込価格<br>(税抜価格)</td>
     <td><%= @item.add_tax_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>) 円</td>
   </tr>
   <tr>
     <td>販売ステータス</td>
-    <td>
+    <td class="<%= @item.is_active ? 'status-active' : 'status-inactive' %>">
       <% if @item.is_active %>
         販売中
       <% else %>
@@ -33,6 +100,6 @@
     </td>
   </tr>
   <tr>
-    <td><%= link_to '編集する', edit_admin_item_path(@item), class: 'btn btn-primary' %></td>
+    <td><%= link_to '編集する', edit_admin_item_path(@item), class: 'btn btn-success' %></td>
   </tr>
 </table>
