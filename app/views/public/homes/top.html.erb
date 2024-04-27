@@ -1,0 +1,45 @@
+<style>
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.left-aligned-text {
+    text-align: left;
+    position: relative;
+    right: 0%;
+    left: 35%;
+    font-weight: 500;
+    font-size: 20px;
+}
+</style>
+
+<p class="left-aligned-text">ようこそ、ながのCAKEへ！<br>
+    このサイトは、ケーキ販売のECサイトになります。<br>
+    会員でない方も商品の閲覧はできますが、<br>
+    購入には会員登録が必要になります。</p>
+
+  <h2><strong>新着商品</strong></h2>
+  <div class="item-container">
+    <div class="item-grid">
+      <% @items.each do |item| %>
+        <div class="item-box">
+          <% if item.image.attached? %>
+            <%= link_to item_path(item) do %>
+             <%= image_tag item.image, class: 'item-image' %>
+            <% end %>
+          <% end %>
+          <h5><%= item.name %></h5>
+          <h5>￥<%= number_with_delimiter(item.add_tax_price) %></h5>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="pull-right">
+    <div class="items-all text-right">
+      <%= link_to '全ての商品を見る >', items_path %>
+    </div>
+  </div>
+</div>

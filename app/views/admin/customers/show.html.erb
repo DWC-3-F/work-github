@@ -1,0 +1,99 @@
+<h2><%= "#{@customer.last_name}#{@customer.first_name}さんの会員詳細" %></h2>
+
+<style>
+table {
+    padding: 0;
+    width: 8cm;
+    height: 1cm;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    font-weight: 500;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 13cm;
+    height: auto;
+    font-size: auto;
+}
+
+.btn.btn-success {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 30px;
+    margin-top: 30px;
+    text-decoration: none;
+}
+
+.btn.btn-default {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+    border-radius: 10px;
+}
+
+.status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #ccc;
+    font-weight: bold;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+  <table>
+    <tr>
+      <td>会員ID</td>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <td>氏名</td>
+      <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <td>カナ</td>
+      <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= @customer.post_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <td>電話番号</td>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @customer.email %></td>
+    </tr>
+    <div>
+      <td>会員ステータス</td>
+    <td class="<%= @customer.is_active ? 'status-active' : 'status-inactive' %>">
+    <% if @customer.is_active %>
+      有効
+    <% else %>
+      退会
+    <% end %>
+    </td>
+  </table>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '編集する', edit_admin_customer_path, class: "btn btn-success" %> <%= link_to '注文履歴一覧を見る', admin_path, class:"btn btn-primary" %>

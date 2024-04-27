@@ -1,0 +1,154 @@
+<style>
+h5 {
+    margin: 0 0 10px 50px;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 6cm;
+    height: 0.8cm;
+}
+
+.table td {
+  border: 1px solid black;
+  width: 200px;
+}
+
+.table th {
+    border: 1px solid black;
+    width: 200px;
+    background-color: #f5f5f5;
+    background-color: #f5f5f5;
+}
+
+.table td:first-child {
+    width: 170px;
+}
+
+.table td:nth-child(2) {
+    width: 700px;
+}
+
+.table td:nth-child(3) {
+    width: 230px;
+}
+
+.table td:nth-child(4) {
+    width: 200px;
+}
+
+.table td:nth-child(5) {
+    width: 200px;
+}
+
+tr:first-child th {
+    padding-top: 28px;
+}
+
+.text-right .row:last-child .col-md-6 {
+    max-width: 33%;
+    position: relative;
+    right: 0%;
+    left: 20.5%;
+}
+
+.btn.btn-primary {
+    text-decoration: none;
+    position: relative;
+    top: -90%;
+    right: 0%;
+    left: -25%;
+}
+
+.btn.btn-default {
+    font-weight: bold;
+    text-align: center;
+    background-color: #28a745;
+    color: #fff;
+    width: 5cm;
+    height: 1.1cm;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.text-right table th,
+.text-right table td {
+    width: 50%;
+}
+
+.text-right table td {
+    text-align: left;
+}
+
+</style>
+
+<div class="text-center">
+    <div class='row'>
+        <div class='col-md-6'>
+            <h5>ショッピングカート</h5>
+        </div>
+        <div class='col-md-6' style="position: relative; left: 2.2cm; top: 1.5cm; margin-top: 1cm;">
+            <%= link_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, class:"btn btn-danger" %>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+   <table class="table table-bordered">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    <% total = 0 %>
+    <% if current_customer.cart_items.present? %>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td>
+            <%= image_tag cart_item.item.image, size: '50x40' %>
+            <%= cart_item.item.name %>
+          </td>
+          <td><%= number_with_delimiter(cart_item.item.add_tax_price) %></td>
+          <td>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item), local: true, method: :patch do |f| %>
+              <%= f.select :amount, options_for_select((1..20).to_a, cart_item.amount), id: "amount_cart" %>
+              <%= f.submit "変更", class: "btn btn-success" %>
+            <% end %>
+          </td>
+          <td>
+            <%= number_with_delimiter(cart_item.subtotal) %>
+          </td>
+          <td>
+            <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
+          </td>
+        </tr>
+        <% total += cart_item.subtotal %>
+      <% end %>
+    <% end %>
+    </table>
+</div>
+
+<div class="text-right" style="margin-top: <%= @cart_items.count * 15 %>px;">
+  <div class='row'>
+    <div class='col-md-4'>
+      <%= link_to '買い物を続ける', root_path, class:"btn btn-primary" %>
+    </div>
+    <div class='col-md-6 text-center'>
+      <table class="table table-bordered">
+        <tr>
+          <th>合計金額</th>
+          <td><%= number_with_delimiter(total) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <%= link_to '情報入力に進む', new_order_path, class:"btn btn-default" %>
+</div>

@@ -1,0 +1,74 @@
+<h2>会員一覧</h2>
+<br></br>
+<style>
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table td a {
+    text-decoration: underline;
+    color: black;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 6cm;
+    height: 1cm;
+}
+
+.status-active {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #ccc;
+    font-weight: bold;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>会員ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.id %></td>
+      <td><%= link_to "#{customer.last_name} #{customer.first_name}", admin_customer_path(customer) %></td>
+      <td><%= customer.email %></td>
+      <td class="<%= customer.is_active ? 'status-active' : 'status-inactive' %>">
+        <%= customer.is_active ? '有効' : '退会' %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @customers %>
+

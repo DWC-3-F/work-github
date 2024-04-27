@@ -1,0 +1,97 @@
+<style>
+h4 {
+      background-color: #f5f5f5;
+      text-align: center;
+      position: relative;
+      right: 0%;
+      left: 20%;
+      padding: 0;
+      width: 5cm;
+      height: 0.8cm;
+      margin-bottom: 15px;
+}
+  
+.btn.btn-success {
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+}
+
+.btn.btn-primary {
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+}
+
+/* スマホ対応させたい場合は、これを消す */
+
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table td {
+    border: 1px solid black;
+    width: 200px;
+}
+
+.table td:first-child {
+    background-color: #f5f5f5;
+    width: 50px;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+
+    <div class='container'>
+  <!--<div class='row'>-->
+    <div class='col-md'>
+        <h4>マイページ</h4><br>
+          <td><strong>登録情報</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '編集する', customers_information_edit_path, class:"btn btn-success"%></td>
+    </div>
+  <!--</div>-->
+</div>
+
+<div class="container">
+    <table class="table table-bordered">
+        <tr>
+            <td>氏名</td>
+            <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+        </tr>
+        <tr>
+            <td>カナ</td>
+            <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+            <td>郵便番号</td>
+            <td><%= @customer.post_code %></td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+            <td>メールアドレス</td>
+            <td><%= @customer.email %></td>
+        </tr>
+    </table>
+</div>
+<div class='container'>
+    <!--<div class='row'>-->
+      <div class='col-md text-left'>
+        <p><strong>配送先</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '一覧を見る', addresses_path, class:"btn btn-primary" %></p>
+        <p><strong>注文履歴</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %></p>
+      </div>
+    <!--</div>-->
+</div>
+
+

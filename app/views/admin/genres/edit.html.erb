@@ -1,0 +1,66 @@
+<h2>ジャンル編集</h2>
+<br></br>
+<style>
+table {
+    padding: 0;
+    width: 8cm;
+    height: 1cm;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table td a {
+    text-decoration: underline;
+    color: black;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 6cm;
+    height: 1cm;
+}
+
+.btn.btn-success {
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+    border-radius: 10px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group label {
+    margin-right: 10px;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+
+<%= form_with model: @genre, url: admin_genre_path do |f| %>
+    <div class="form-group">
+        <%= f.label :name, 'ジャンル名' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.text_field :name %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.submit '変更を保存', class: 'btn btn-success' %>
+    </div>
+<% end %>

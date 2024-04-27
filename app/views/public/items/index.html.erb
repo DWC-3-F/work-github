@@ -1,0 +1,44 @@
+<div class="title-container">
+    <h1><strong>商品一覧</strong></h1>
+    <h3>(全<%= @items.total_count %>件)</h3>
+</div>
+
+<style>
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.left-aligned-text {
+    text-align: left;
+    position: relative;
+    right: 0%;
+    left: 35%;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.title-container {
+    align-items: center;
+</style>
+
+<div class="item-container">
+  <div class="item-grid">
+    <% @items.each do |item| %>
+      <div class="item-box">
+        <% if item.image.attached? %>
+          <%= link_to item_path(item) do %>
+            <%= image_tag item.image, class: 'item-image' %>
+          <% end %>
+        <% end %>
+        <h5><%= item.name %></h5>
+        <h5>￥<%= number_with_delimiter(item.add_tax_price) %></h5>
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination">
+    <%= paginate @items %>
+  </div>
+</div>
+
+

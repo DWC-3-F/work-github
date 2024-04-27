@@ -13,3 +13,80 @@
  *= require_tree .
  *= require_self
  */
+.item-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.item-box {
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.item-image {
+  width: 83%;
+  height: auto;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.container {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center }
+
+.menu-button {
+    width: 3cm;
+    height: 1.3cm;
+    display: inline-block;
+    padding: 10px 0px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    font-size: 17px;
+    white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+}
+
+.menu-button:hover {
+    background-color: #f0f0f0;
+    text-decoration: none;
+    color: black;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.pagination a {
+  margin: 0 2.5px;
+}
+
+.pagination a:not(.active) {
+  text-decoration: underline;
+}
+
+.pagination a[href*='Next']:not(.active) {
+  text-decoration: underline;
+}
+
+.pagination a[href*='Next']::after {
+  content: ' >';
+}

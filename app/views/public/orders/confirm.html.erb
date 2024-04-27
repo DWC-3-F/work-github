@@ -1,0 +1,114 @@
+<style>
+  h4 {
+    margin: 0 0 10px 50px;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 6cm;
+    height: 0.8cm;
+  }
+
+  .table td {
+    border: 1px solid black;
+    width: 200px;
+}
+
+  .table th {
+    border: 1px solid black;
+    width: 200px;
+    background-color: #f5f5f5;
+}
+
+tr:first-child th {
+    padding-top: 28px;
+}
+</style>
+
+<div class="container-fluid">
+<div class="row pt-3 justify-content-center">
+<div class="col-11">
+<h4>注文情報確認</h4>
+</div>
+</div>
+<div class="row justify-content-center">
+<div class="col-8 p-3">
+<table class="table table-bordered">
+  <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+  </tr>
+ <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td>
+      <%= image_tag cart_item.item.image, size: "50x40" %>
+      <strong><%= cart_item.item.name %></strong>
+    </td>
+    <td><%= number_with_delimiter(cart_item.item.price) %></td>
+    <td><%= cart_item.amount %></td>
+    <td><%= number_with_delimiter(cart_item.item.price*cart_item.amount) %></td>
+  </tr>
+ <% end %>
+</table>
+</div>
+<div class="col-3 p-3">
+<table class="table table-bordered">
+  <tr>
+    <th>送料</th>
+    <td><%= @shipping_cost %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= number_with_delimiter(@cart_items_price) %></td>
+  </tr>
+  <tr>
+    <th>請求額</th>
+    <td><%= number_with_delimiter(@total_payment) %></td>
+  </tr>
+</table>
+</div>
+</div>
+
+
+<div class="row pd-3 justify-content-center">
+<div class="col-11 p-3">
+<table>
+<tr>
+<th style="font-size : 19px;" width="20%">支払方法 <br>　</th>
+<td width="80%">
+  <% if @selected_payment_method == "credit_card" %>
+    クレジットカード
+  <% else %>
+    銀行振込
+  <% end %>
+</td>
+</tr>
+<tr>
+  <th style="font-size : 19px;" width="20%">お届け先</th>
+  <td width="80%"><%= @selected_address %>
+
+<%= form_with url: orders_path, method: :post do |f| %>
+    <%= hidden_field_tag 'order[payment_method]', @selected_payment_method %>
+    <%= hidden_field_tag 'order[address_type]', @address_type %>
+
+    <% if @address_type == "registered_address" %>
+      <%= hidden_field_tag 'order[registered_address_id]', params[:order][:registered_address_id] %>
+    <% elsif @address_type == "new_address" %>
+      <%= hidden_field_tag 'order[new_post_code]', params[:order][:new_post_code] %>
+      <%= hidden_field_tag 'order[new_address]', params[:order][:new_address] %>
+      <%= hidden_field_tag 'order[new_name]', params[:order][:new_name] %>
+    <% end %>
+  </td>
+</tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+</div>
+  <%= f.submit "注文を確定する", class: "btn btn-success", style: 'width: 180px' %>
+</div>
+<% end %>
+</div>
+</div>

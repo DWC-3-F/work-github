@@ -1,0 +1,91 @@
+<%= flash[:alert] %>
+<!--<h1>Items#show</h1>-->
+
+<style>
+table {
+    padding: 0;
+    width: 12cm;
+    height: 1cm;
+    border-collapse: separate;
+    border-spacing: 0;
+    position: absolute;
+    top: 25%;
+    right: 35;
+    left: 40%;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+table td a {
+    text-decoration: underline;
+    color: black;
+}
+
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0;
+    width: 5cm;
+    height: 1cm;
+}
+
+.btn.btn-success {
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    width: 3.5cm;
+    height: 1cm;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+<div>
+  <%= image_tag @item.image, size: '200x200', style: 'margin-top: 100px; margin-left: 200px;' %>
+</div>
+
+<table>
+  <tr>
+    <td><strong><%= @item.name %></strong></td>
+  </tr>
+  <tr>
+    <td><%= @item.introduction %></td>
+  </tr>
+  <tr>
+    <td>
+        <strong>￥<%= number_with_delimiter(@item.add_tax_price) %></strong>
+        <span style="font-size: 80%;">（税込）</span>
+    </td>
+  </tr>
+  <tr>
+  <% if @item.is_active == true %>
+    <td>
+      <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+        <%= f.select :amount, options_for_select((1..20).to_a), include_blank: "個数選択", style: "width: 150px;" %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <span style="margin-left: 80px;">
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        </span>
+      <% end %>
+    </td>
+  <% end %>
+  </tr>
+</table>
