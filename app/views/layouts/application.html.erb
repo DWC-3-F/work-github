@@ -1,41 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WorkGithub</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <script src="https://kit.fontawesome.com/f61b6e8d11.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
+<head>
+  <title>WorkGithub</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <script src="https://kit.fontawesome.com/f61b6e8d11.js" crossorigin="anonymous"></script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+    .menu li:first-child a {
+      font-weight: bold;
+      color: black;
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 10px;
+      position: relative;
+      top: 10%;
+      right: 150%;
+      left: -400%;
+    }
+  </style>
+</head>
 <body>
-    <% if customer_signed_in? %>
-        <p style="  position: absolute; top: 5%; left: 41%; margin: -25px 0 0 -25px; ">ようこそ、<%= current_customer.last_name %>さん！</p>
-        <ul class="menu">
-            <li><%= link_to '商品一覧', items_path, class: 'menu-button' %></li>
-            <li><%= link_to 'マイページ', customers_my_page_path, class: 'menu-button' %></li>
-            <li><%= link_to 'カート', cart_items_path, class: 'menu-button' %></li>
-            <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'menu-button' %></li>
-        </ul>
-    <% elsif admin_signed_in? && !customer_signed_in? %>
-        <ul class="menu">
-            <li><%= link_to '商品一覧', admin_items_path, class: 'menu-button' %></li>
-            <li><%= link_to '会員一覧', admin_customers_path, class: 'menu-button' %></li>
-            <li><%= link_to '注文履歴一覧', admin_path, class: 'menu-button' %></li>
-            <li><%= link_to 'ジャンル一覧', admin_genres_path, class: 'menu-button' %></li>
-            <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'menu-button' %></li>
-        </ul>
-    <% else %>
-        <ul class="menu">
-            <li><%= link_to 'About', about_path, class: 'menu-button' %></li>
-            <li><%= link_to '商品一覧', items_path, class: 'menu-button' %></li>
-            <li><%= link_to '新規登録', new_customer_registration_path, class: 'menu-button' %></li>
-            <li><%= link_to 'ログイン', new_customer_session_path, class: 'menu-button' %></li>
-        </ul>
-    <% end %>
-    <%= yield %>
+  <% if customer_signed_in? %>
+    <p style="position: absolute; top: 5%; left: 41%;">ようこそ、<%= current_customer.last_name %>さん！</p>
+    <ul class="menu">
+      <li><%= link_to 'Nagano Cake', root_path %></li>
+      <li><%= link_to '商品一覧', items_path, class: 'menu-button' %></li>
+      <li><%= link_to 'マイページ', customers_my_page_path, class: 'menu-button' %></li>
+      <li><%= link_to 'カート', cart_items_path, class: 'menu-button' %></li>
+      <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'menu-button' %></li>
+    </ul>
+  <% elsif admin_signed_in? && !customer_signed_in? %>
+    <ul class="menu">
+      <li><%= link_to 'Nagano Cake', admin_path %></li>
+      <li><%= link_to '商品一覧', admin_items_path, class: 'menu-button' %></li>
+      <li><%= link_to '会員一覧', admin_customers_path, class: 'menu-button' %></li>
+      <li><%= link_to '注文履歴一覧', admin_path, class: 'menu-button' %></li>
+      <li><%= link_to 'ジャンル一覧', admin_genres_path, class: 'menu-button' %></li>
+      <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'menu-button' %></li>
+    </ul>
+  <% else %>
+    <ul class="menu">
+      <li><%= link_to 'Nagano Cake', root_path %></li>
+      <li><%= link_to 'About', about_path, class: 'menu-button' %></li>
+      <li><%= link_to '商品一覧', items_path, class: 'menu-button' %></li>
+      <li><%= link_to '新規登録', new_customer_registration_path, class: 'menu-button' %></li>
+      <li><%= link_to 'ログイン', new_customer_session_path, class: 'menu-button' %></li>
+    </ul>
+  <% end %>
+  <%= yield %>
 </body>
-
 </html>
