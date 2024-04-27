@@ -1,3 +1,72 @@
+<style>
+h2 {
+    background-color: #f5f5f5;
+    text-align: center;
+    width: 7cm;
+    height: 1;
+    position: relative;
+    right: 0%;
+    left: 21%;
+}
+
+body {
+  line-height: 1.6;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.payment-method {
+  margin-bottom: 20px;
+}
+
+.delivery-destination {
+  margin-bottom: 20px;
+}
+
+.new-address-fields {
+  margin-bottom: 20px;
+}
+
+.new-address-fields input {
+  margin-bottom: 10px;
+}
+
+form {
+    color: #333;
+    max-width: 600px;
+    margin: 20px auto 20px 10%;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+h3 {
+    font-weight: bold;
+    position: relative;
+    right: 0%;
+    left: -18%;
+}
+
+.payment-method, .delivery-destination {
+  margin-bottom: 20px;
+}
+
+select[name="order[registered_address_id]"] {
+    width: 120%;
+    position: relative;
+    right: 0%;
+    left: 5%;
+}
+
+.btn.btn-primary {
+    font-weight: bold;
+    width: 5cm;
+    height: 1.2cm;
+    text-decoration: none;
+    position: relative;
+    right: 0%;
+    left: 180%;
+}
+</style>
 
 <h2>注文情報入力</h2>
 <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
@@ -23,8 +92,8 @@
       <!--〒<%#= current_member.post_code + "　" + current_member.address + "　" + current_member.family_name + current_member.first_name %> -->
     </div>
     <div>
-      <p>〒<%= @customer.post_code %><%= @customer.address %><br>
-      <%= @customer.last_name %><%= @customer.first_name %></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;〒<%= @customer.post_code %><%= @customer.address %><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @customer.last_name %><%= @customer.first_name %></p>
     </div>
     <div>
       <%#= f.radio_button :address_option, 'existing', id: "address_existing" %>
@@ -50,14 +119,14 @@
         </tr>
         <tr>
           <td>住所</td>
-          <td><%= f.text_field :new_address, placeholder: '東京都渋谷区代々木神園町0-0' %></td>
+          <td><%= f.text_field :new_address, placeholder: '東京都渋谷区代々木神園町0-0', style: 'width: 225%' %></td>
         </tr>
         <tr>
           <td>宛名</td>
           <td><%= f.text_field :new_name, placeholder: '令和道子' %></td>
         </tr>
         <tr>
-          <td><%= f.submit '注文を確定する' %></td>
+          <td><br><%= f.submit '確認画面へ進む', class:"btn btn-primary" %></td>
         </tr>
       </table>
     </div>

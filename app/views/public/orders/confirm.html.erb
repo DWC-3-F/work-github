@@ -7,6 +7,21 @@
     width: 6cm;
     height: 0.8cm;
   }
+
+  .table td {
+    border: 1px solid black;
+    width: 200px;
+}
+
+  .table th {
+    border: 1px solid black;
+    width: 200px;
+    background-color: #f5f5f5;
+}
+
+tr:first-child th {
+    padding-top: 28px;
+}
 </style>
 
 <div class="container-fluid">
@@ -60,7 +75,7 @@
 <div class="col-11 p-3">
 <table>
 <tr>
-<th style="font-size : 19px;" width="20%">支払方法　</th>
+<th style="font-size : 19px;" width="20%">支払方法 <br>　</th>
 <td width="80%">
   <% if @selected_payment_method == "credit_card" %>
     クレジットカード
@@ -87,8 +102,11 @@
   </td>
 </tr>
 </table>
+<br>
+<br>
+<br>
+<br>
 </div>
-<div class="row pt-15 justify-content-center">
   <%= f.submit "注文を確定する", class: "btn btn-success", style: 'width: 180px' %>
 </div>
 <% end %>
