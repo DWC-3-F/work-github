@@ -1,15 +1,36 @@
+<style>
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.button {
+    width: 70px;
+}
+
+body {
+    width: 80%;
+    margin: 0 auto;
+}
+</style>
+
 <div class="container">
-    <div class="row">
-      <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-        <h5><strong>本当に退会しますか？</strong></h5>
-          <p>
-            退会すると、会員登録情報や<br>
-            これまでの購入履歴が閲覧できなくなります。<br>
-            退会する場合は、「退会する」をクリックしてください。
-          </p>
-        
-          <%= link_to "退会しない", customers_my_page_path, :class => "btn btn-primary ms-3" %>
-          <%= link_to "退会する", customers_withdraw_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
-      </div>
+  <div class="row">
+    <div class="px-3 mx-auto text-center">
+        <h5 style="font-size: 30px;"><strong>本当に退会しますか？</strong></h5><br>
+            <p>
+                退会すると、会員登録情報や<br>
+                これまでの購入履歴が閲覧できなくなります。<br>
+                退会する場合は、「退会する」をクリックしてください。
+            </p>
+            <div class="button-container">
+                <%= link_to "退会しない", customers_my_page_path, class: "btn btn-primary button", style: "width: 120px;" %>
+                <%= link_to "退会する", customers_withdraw_path, method: :patch, class: "btn btn-danger button", style: "width: 120px;", data: { confirm: "本当に退会しますか？" } %>
+            </div>
+        </div>
     </div>
 </div>
+
