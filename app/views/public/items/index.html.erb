@@ -28,7 +28,7 @@ body {
       <div class="item-box">
         <% if item.image.attached? %>
           <%= link_to item_path(item) do %>
-           <%= image_tag item.image, class: 'item-image' %>
+            <%= image_tag item.image, class: 'item-image' %>
           <% end %>
         <% end %>
         <h5><%= item.name %></h5>

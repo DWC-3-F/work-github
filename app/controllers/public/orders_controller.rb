@@ -56,13 +56,12 @@ class Public::OrdersController < ApplicationController
       @cart_items.destroy_all
       redirect_to success_orders_path
     else
-      render :items
+      render :new
     end
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
-    @orders = Order.page(params[:page]).per(10)
+    @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
