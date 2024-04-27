@@ -35,7 +35,7 @@ class Public::CartItemsController < ApplicationController
     elsif @cart_item.save
       redirect_to cart_items_path
     else
-      render cart_items_path
+      redirect_to items_path
     end
   end
 
